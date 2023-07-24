@@ -1,4 +1,5 @@
 PING_COMMAND : ["mping", "malive"]
+SSTART_COMMAND : ["start"]
 START_COMMAND : ["mstart"]
 HELP_COMMAND : ["mhelp"]
 SETTINGS_COMMAND : ["settings", "setting"]
