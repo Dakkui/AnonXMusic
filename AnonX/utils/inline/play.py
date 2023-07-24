@@ -1,39 +1,27 @@
 import math
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
+import random
 import config
 from AnonX.utils.formatters import time_to_seconds
+
+selections = [
+    "𝗧𝗛𝗔𝗡𝗞𝗦 𝗙𝗢𝗥 𝗣𝗟𝗔𝗬𝗜𝗡𝗚",
+    "𝗛𝗘𝗟𝗟𝗢,𝗛𝗢𝗪 𝗔𝗥𝗘 𝗬𝗢𝗨",
+    "𝗔𝗨𝗝𝗟𝗔 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗜𝗡𝗚",
+    "𝗙𝗘𝗘𝗟𝗦 𝗟𝗜𝗞𝗘 𝗧𝗛𝗘 𝗦𝗢𝗡𝗚",
+    "𝗧𝗛𝗔𝗡𝗞𝗦 𝗙𝗢𝗥  𝗝𝗢𝗜𝗡𝗜𝗡𝗚",
+    "𝗛𝗘𝗟𝗣 𝗖𝗢𝗡𝗧𝗔𝗖𝗧 𝗔𝗗𝗠𝗜𝗡",
+    "𝗥𝗘𝗦𝗣𝗘𝗖𝗧   𝗘𝗩𝗘𝗥𝗬𝗢𝗡𝗘",
+    "𝗠𝗔𝗜𝗡𝗧𝗔𝗜𝗡 𝗧𝗛𝗘  𝗣𝗘𝗔𝗖𝗘",
+]
 
 
 ## After Edits with Timer Bar
 
-def stream_markup_timer(_, videoid, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    anon = math.floor(percentage)
-    if 0 < anon <= 10:
-        bar = "◉—————————"
-    elif 10 < anon < 20:
-        bar = "—◉————————"
-    elif 20 <= anon < 30:
-        bar = "——◉———————"
-    elif 30 <= anon < 40:
-        bar = "———◉——————"
-    elif 40 <= anon < 50:
-        bar = "————◉—————"
-    elif 50 <= anon < 60:
-        bar = "—————◉————"
-    elif 60 <= anon < 70:
-        bar = "——————◉———"
-    elif 70 <= anon < 80:
-        bar = "———————◉——"
-    elif 80 <= anon < 95:
-        bar = "————————◉—"
-    else:
-        bar = "—————————◉"
 
+def stream_markup_timer(_, videoid, chat_id, played, dur):
+    bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
@@ -69,31 +57,13 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
 
 
 def telegram_markup_timer(_, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    anon = math.floor(percentage)
-    if 0 < anon <= 10:
-        bar = "◉—————————"
-    elif 10 < anon < 20:
-        bar = "—◉————————"
-    elif 20 <= anon < 30:
-        bar = "——◉———————"
-    elif 30 <= anon < 40:
-        bar = "———◉——————"
-    elif 40 <= anon < 50:
-        bar = "————◉—————"
-    elif 50 <= anon < 60:
-        bar = "—————◉————"
-    elif 60 <= anon < 70:
-        bar = "——————◉———"
-    elif 70 <= anon < 80:
-        bar = "———————◉——"
-    elif 80 <= anon < 95:
-        bar = "————————◉—"
-    else:
-        bar = "—————————◉"
-
+    
+        [
+            InlineKeyboardButton(
+                text="▷",
+                callback_data=f"ADMIN Resume|{chat_id}",
+            ),
+      bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
@@ -101,11 +71,6 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 callback_data="GetTimer",
             )
         ],
-        [
-            InlineKeyboardButton(
-                text="▷",
-                callback_data=f"ADMIN Resume|{chat_id}",
-            ),
             InlineKeyboardButton(
                 text="II", callback_data=f"ADMIN Pause|{chat_id}"
             ),
